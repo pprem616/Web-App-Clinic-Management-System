@@ -1,0 +1,526 @@
+@keyframes transitionIn{
+    from{
+        opacity:0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.navbar-brand
+{   font-size: 20px !important;
+    font-weight: 550 !important;
+}
+
+
+h1,h2,h3,h4,h5,h6
+{
+    margin-bottom: 0  !important;
+    margin:0.3% !important;
+}
+
+
+body
+{   
+    background-repeat: no-repeat!important;
+    animation: transitionIn 1s !important;
+    background-image:url('bgimg.jpg') !important;
+    background-attachment: fixed  !important;
+    background-size:cover !important;
+}
+
+.features
+{
+    background-color: white ;
+    border-radius: 6px;
+}
+
+
+.feature1
+{
+    background-image:url('feature1.png');
+    height:100px;
+    width:100px;
+    margin:auto;
+    background-repeat:no-repeat;
+}
+.feature2
+{
+    background-image:url('feature2.png');
+    height:100px;
+    width:100px;
+    margin:auto;
+    background-repeat:no-repeat;
+}
+.feature3
+{
+    background-image:url('feature3.png');
+    height:100px;
+    width:100px;
+    margin:auto;
+    background-repeat:no-repeat;
+}
+
+
+
+.loginform
+{
+    padding:15px;
+}
+
+.asterisk
+{
+    color:red;
+}
+
+#contactDesc
+{
+   resize:none !important;
+}
+
+.aboutimg,.aboutimgdiv
+{
+    background-size: cover;
+
+}
+.contactbg
+{
+    opacity:0.85;
+}
+
+
+.contactsubmit
+{
+    padding-left:2px !important;
+}
+
+.contactconatiner, .aboutcontainer
+{
+    background-color:#ffffff;
+    padding:1.5%;
+    border-radius:6px;
+}
+
+.contactform
+{
+    padding-top:15px;
+    padding-left:50px !important;
+}
+
+.contactdetails
+{
+    padding-top:15px;
+}
+
+
+
+.clear
+{
+    height:75px;
+    width:100%;
+}
+
+.fborder
+{
+    border:none !important;
+}
+
+.nav-tabs
+{
+    border:none !important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-color:#e3f1f7 !important;
+    border-bottom:none !important;
+}
+.modalbg
+{
+    background-color:#f8f9fa !important;
+}
+
+.nav-item a
+{
+    color:black !important;
+}
+
+ul li
+{
+    border:1px solid transparent;
+}
+.formlabel
+{
+    padding:2px 0 7px 0;
+}
+
+#patient1, #patient2
+{
+    border:1px solid #ADD8E9 !important;
+    border-radius:3px;
+}
+
+.nav-item.active
+{
+    border-radius:3px !important;
+    border:1px solid #ADD8E9  !important;
+}
+
+ul li:hover, .active
+{
+    background-color:#fff;
+    border-radius:3px;
+    border:1px solid #ADD8E9;
+}
+
+.navbar{
+ border-bottom:1px solid #ADD8E9;
+ box-shadow:0 1px 6px #ADD8E9;
+}
+
+.navbar-nav li:hover
+{
+    color:blue;
+}
+
+ .patientdiv:hover, .admindiv:hover, .doctordiv:hover
+{
+    cursor:pointer;
+    border-bottom-width:8px ;
+    border-bottom-color:#47b6f1;
+    box-shadow:0 0px 5px #ffffff;
+    border-bottom-style: solid ;
+    transform:  translateY(-15px);
+}
+
+
+.admindiv,.doctordiv,.patientdiv
+{   
+    padding-top:20px;
+    background-color:white;
+    border-bottom-width:8px ;
+    border-bottom-color:rgb(255, 255, 255);
+    border-bottom-style: solid ;
+    transition : transform 250ms;
+    padding-top:2.5%;
+    border-radius:7px;
+}
+
+.hardreset
+{
+    padding-top:14vw;
+    box-sizing:border-box;
+    padding-bottom:5.5vw;
+}
+.hardreset h2
+{
+    font-size:2vw;
+    
+}
+.hardreset h1
+{
+    font-size:2.5vw;
+    font-family: 'Candal', sans-serif;
+}
+
+.rowsetting
+{
+    margin:30px 0 55px 0 !important;
+    border-radius: 5px !important;
+}
+
+.imgsetting
+{
+    border-radius:50%;
+    height:100px;
+    width:100px;
+}
+
+.rowsetting h1
+{
+    margin-top: 20px;
+
+}
+.rowsetting p
+{
+    padding:10px;
+    color:#6c757d !important;
+}
+
+
+
+@media only screen and (max-width:775px)
+{
+
+    .notification h6
+    {
+        font-size:1.4vh;
+    }
+
+    .hardreset h1 {
+    font-size: 6vw;
+    }
+
+    .hardreset h2
+    {
+        font-size:5vw;
+        padding-top:70px;
+    }
+    .hardreset h4
+    {
+        font-size:4vw;
+    }
+
+    .fixdiv
+    {
+        max-width:0% !important;
+    }
+
+    .patientdiv:hover, .admindiv:hover, .doctordiv:hover
+    {
+        cursor:pointer;
+        border-bottom-width:6px ;
+        border-bottom-color:#007bff;
+        border-bottom-style: solid ;
+    }
+
+    
+    .fa-user, .fa-user-md, .fa-user-cog
+    {
+        font-size: 9vw !important;
+    }
+
+    .patientdiv
+    {   
+        margin-top:20px;
+        padding-top:20px;
+        margin-left: -3.3vw;
+        background-color:white;
+        border-bottom-width:6px ;
+        border-bottom-color:rgb(255, 255, 255);
+        border-bottom-style: solid ;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .admindiv
+    {   
+        margin-right: 2vw;
+        margin-top:20px;
+        padding-top:20px;
+        background-color:white;
+        border-bottom-width:6px ;
+        border-bottom-color:rgb(255, 255, 255);
+        border-bottom-style: solid ;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    .doctordiv
+    {
+        margin-top:20px;
+        padding-top:20px;
+        background-color:white;
+        border-bottom-width:6px ;
+        border-bottom-color:rgb(255, 255, 255);
+        border-bottom-style: solid ;
+    }
+
+    .feature-content h4
+    {
+        font-size: medium;
+    }
+
+
+    .feature1, .feature2, .feature3
+    {
+        height:10vh;
+        width:21vw;
+    }
+
+    #services, #about, #contact
+    {
+        font-size: larger;
+    }
+
+    .aboutdetails h4
+    {
+        font-size: medium;
+    }
+
+
+    .aboutcontainer
+    {
+        background-color:#ffffff;
+        padding:2%;
+    }
+    .contactconatiner
+    {
+        background-color:#ffffff;
+        padding:2%;
+    }
+
+    .ourteam h4
+    {
+        font-size:medium;
+    }
+    .contactform
+    {
+        padding-top:15px;
+        padding-left:15px !important;
+    }
+    
+    .contactdetails h4
+    {
+        font-size: medium;
+    }
+    
+
+    .contactform h4
+    {
+        font-size: medium;
+    }
+    
+    .patientdiv h4, .admindiv h4, .doctordiv h4, .feature-content p, .aboutdetails p, 
+    .teammember h5, .teammember p , .contactdetails h6,  .contactdetails p, .form-label, 
+    .contactsubmit button
+    {
+        font-size: small;
+    }
+}
+
+@media only screen and (max-width:1000px)
+{
+
+    .hardreset h1 {
+    font-size: 4vw;
+    }
+
+    .hardreset h2
+    {
+        font-size:3vw;
+        padding-top:70px;
+    }
+    .hardreset h4
+    {
+        font-size:3vw;
+    }
+
+    .patientdiv:hover, .admindiv:hover, .doctordiv:hover
+    {
+        cursor:pointer;
+        border-bottom-width:6px ;
+        border-bottom-color:#007bff;
+        border-bottom-style: solid ;
+    }
+
+    
+    .fa-user, .fa-user-md, .fa-user-cog
+    {
+        font-size: 8vw !important;
+    }
+
+    .fixdiv
+    {
+        max-width:0% !important;
+    }
+    .patientdiv
+    {   
+        margin-top:20px;
+        padding-top:20px;
+        background-color:white;
+        border-bottom-width:6px ;
+        border-bottom-color:rgb(255, 255, 255);
+        border-bottom-style: solid ;
+        border-radius: 6px;
+    }
+
+    .admindiv
+    {   
+        margin-right: 2vw;
+        margin-top:20px;
+        padding-top:20px;
+        background-color:white;
+        border-bottom-width:6px ;
+        border-bottom-color:rgb(255, 255, 255);
+        border-bottom-style: solid ;
+        border-radius: 6px;
+    }
+    .doctordiv
+    {
+        margin-top:20px;
+        padding-top:20px;
+        background-color:white;
+        border-bottom-width:6px ;
+        border-bottom-color:rgb(255, 255, 255);
+        border-bottom-style: solid ;
+        border-radius: 6px;
+    }
+
+    .feature-content h4
+    {
+        font-size: medium;
+    }
+
+
+    .feature1, .feature2, .feature3
+    {
+        height:10vh;
+        width:21vw;
+    }
+
+    #services, #about, #contact
+    {
+        font-size: larger;
+    }
+
+    .aboutdetails h4
+    {
+        font-size: medium;
+    }
+
+
+    .aboutcontainer
+    {
+        background-color:#ffffff;
+        padding:2%;
+    }
+    .contactconatiner
+    {
+        background-color:#ffffff;
+        padding:2%;
+    }
+
+    .ourteam h4
+    {
+        font-size:medium;
+    }
+    .contactform
+    {
+        padding-top:15px;
+        padding-left:15px !important;
+    }
+    
+    .contactdetails h4
+    {
+        font-size: medium;
+    }
+    
+
+    .contactform h4
+    {
+        font-size: medium;
+    }
+    
+    .patientdiv h4, .admindiv h4, .doctordiv h4, .feature-content p, .aboutdetails p, 
+    .teammember h5, .teammember p , .contactdetails h6,  .contactdetails p, .form-label, 
+    .contactsubmit button
+    {
+        font-size: small;
+    }
+}
+
+
+
+

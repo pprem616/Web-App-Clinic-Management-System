@@ -1,0 +1,1001 @@
+
+<html lang="en">
+  <head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <title>Admin | Dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<!--fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  
+
+
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <nav class="fixed-top align-top bg-dark toggled" id="sidebar-wrapper" role="navigation">
+        <div class="simplebar-content" style="padding: 0px;">
+                <a class="sidebar-brand" >
+                    <span class="text-center text-white"><h4>C M S</h4></span>
+                </a>
+
+                <ul class="navbar-nav nav nav-tabs align-self-stretch">
+
+                <li class="sidebar-header text-center">  NAVIGATION </li>
+                <li>
+                    <a class="nav-link text-left active" data-toggle = "tab" href="#dashboard">
+                        <i class="fas fa-tachometer-alt" style="color:white" ></i>  Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link text-left" data-toggle = "tab" href="#departments">
+                        <i class="fas fa-clinic-medical" style="color:white"></i>  Departments
+                    </a>
+                </li>
+                 <li>
+                    <a class="nav-link text-left" data-toggle = "tab" href="#doctors">
+                        <i class="fas fa-stethoscope" style="color:white"></i>   Doctors
+                    </a>
+                </li>
+                 <li>
+                    <a class="nav-link text-left" data-toggle = "tab" href="#patients">
+                        <i class="fas fa-user" style="color:white"></i>   Patients
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link text-left" data-toggle = "tab" href="#appointments">
+                        <i class="fas fa-notes-medical" style="color:white"></i></i>  Appointment History
+                    </a>
+                </li>
+		    </ul>
+        </div>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div id="content contentdiv">
+                <div class="container-fluid p-0 px-lg-0 px-md-0">
+       
+                    <nav class="navbar navbar-expand navbar-light my-navbar">
+    
+                        <!-- Topbar Search -->
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto list-inline">
+                
+                            <li class="list-inline-item text-right">
+                                <li class="list-inline-item text-right">
+                                    <i class="fas fa-user-cog fa-2x mt-3 pt-2 mr-1" style="color:#38ACEC;"></i>  
+                                </li>
+                                <span class="mt-1 pt-4 pr-3"> {% for i in userinfo %} {{i.username}} {% endfor %}</span>
+                            </li>
+                                 <a href="../" class="mt-3 mb-3 mr-3 pt-1 pb-1"> <button class="btn btn-danger" style="color:white;"><i class="fas fa-power-off pt-1 pb-1"></i> </button> </a>
+                            </ul>
+                    </nav>
+                
+                    
+                
+
+                    <div class="tab-content">
+                    
+                        <div id="dashboard" class="tab-pane active">
+                            <div class="container-fluid px-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 mt-lg-4 mt-4">
+                                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                            <h1 class="h3 mb-0 text-gray-800"> Dashboard</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                            
+                                    <div class="col-md-3 m-2 p-4 dashbox ">
+                                        <div class="mt-3 mb-3 text-center">
+                                            <div class="panel-body">
+                                                <span class="fa-stack fa-2x">
+                                                    <i class="fas fa-clinic-medical" style="font-size:45px;color:#007bff"></i> 
+                                                </span>
+                                                <h5 class="m-3 dashhead">Departments</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-md-3 m-2 p-4 dashbox">
+                                        <div class="mt-3 mb-3 s text-center">
+                                            <div class="panel-body">
+                                                <span class="fa-stack fa-2x">
+                                                    <i class="fas fa-user-md" style="font-size:45px;color:#007bff"></i>
+                                                </span>
+                                                <h5 class="m-3 dashhead">Doctors</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 m-2 p-4 dashbox">
+                                        <div class="mt-3 mb-3 s text-center">
+                                            <div class="panel-body">
+                                                <span class="fa-stack fa-2x">
+                                                    <i class="fas fa-user" style="font-size:45px;color:#007bff"></i>
+                                                </span>
+                                                <h5 class="m-3 dashhead">Patients</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 m-2 p-4 dashbox">
+                                        <div class="mt-3 mb-3  text-center">
+                                            <div class="panel-body">
+                                                <span class="fa-stack fa-2x">
+                                                <i class="fas fa-notes-medical" style="font-size:45px;color:#007bff"></i>
+                                                </span>
+                                                <h5 class="m-3 dashhead">Appointments</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                        <div id="departments" class="tab-pane fade in">
+                            <div class="container-fluid px-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 mt-lg-4 mt-4">
+                                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                            <h1 class="h3 mb-0 text-gray-800"> Manage Departments</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-4" style="width:40%;">
+
+                                    <div class="form-row toolbar form-group">
+                                        <div class="col-md-8">
+                                        </div>
+                                        <div class="add col-md-2 ">
+                                            <button class="btn btn-block btn-primary"   data-toggle="modal" data-target="#adddepartment">Add</button>
+                                        </div>
+                                        <div class="edit col-md-2 ">
+                                            <button class="btn btn-block btn-secondary" id="update_btn_dept">Edit</button>
+                                            <button class="btn btn-block btn-success" id="save_all_btn_dept" style="display:none;margin-top:0px">Save</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="adddepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title container text-center">Add Department</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </div>
+                                                <div class="modal-body">
+                                                
+                                                <form method="POST" id="adddepartmentform">
+                                                {% csrf_token %}
+
+                                                    <div class="form-row">
+                            
+                                                        <div class="col-md-9">
+                                                            <input  type="text" class="form-control" id="DeptName" name="dept_name" placeholder="Department Name"  required>   
+                                                        </div>
+                                                         
+                                                        <div class="col-md-3">
+                                                            <input type="button" name="submit" class="btn btn-block btn-primary add-btn-dept" value=" Add ">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                <table class="depttable table table-bordered" style="background-color:white;">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 4%;">DID</th>
+                                        <th>Department Name</th>
+                                        <th class="text-center" style="width:5%;">Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody> 
+                                        {% for dept in deptinfo %}
+                                            <tr>
+                                                <td>{{dept.dept_id}}</td>
+                                                <td class="editable" data-type="deptname">{{dept.dept_name}}</td>
+                                                <td style="width:5%;"><i class="fas fa-times btn btn-block btn-delete-dept" style="color:red;"></i></td>
+                                            </tr>
+                                        {% endfor %}       
+                                    </tbody>
+                                </table>
+                                </div>
+                    
+                            </div>
+                        </div>
+
+
+                        <div id="patients" class="tab-pane fade in">
+                            <div class="container-fluid px-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 mt-lg-4 mt-4">
+                                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                            <h1 class="h3 mb-0 text-gray-800"> Manage Patients</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-4" style="width:85%;">
+
+                                    <div class="form-row toolbar form-group">
+                                        <div class="col-md-10">
+                                        </div>
+                                        <div class="col-md-1 ">
+                                            <button class="btn btn-block btn-primary"  data-toggle="modal" data-target="#addpatient">Add</button>
+                                        </div>
+                                        <div class="col-md-1 ">
+                                            <button class="btn btn-block btn-secondary" id="update_btn">Edit</button>
+                                            <button class="btn btn-block btn-success" id="save_all_btn" style="display:none;margin-top:0px">Save</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="addpatient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title container text-center">Add Patient</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </div>
+                                                <div class="modal-body">
+                                                
+                                                <form method="POST" id="addpatientform">
+                                                {% csrf_token %}
+
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 ">Patient Name :</div>
+                                                            <input  type="text" class="form-control" id="pFirstName" name="first_name" placeholder="First Name"  required="true">
+                                                            
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 " >&nbsp</div>
+                                                            <input type="text" class="form-control" id="pMiddleName" name="middle_name" placeholder="Middle Name"  required="true">
+                                                        </div>
+
+                                                        <div class=" col-md-4">
+                                                            <div class="formlabel text-left pb-1 " >&nbsp</div>
+                                                            <input type="text" class="form-control" id="pLastName" name="last_name" placeholder="Last Name"  required="true">
+                                                        </div>
+                                                        
+                                                    </div>
+                                            
+                                                    
+                                                    <div class="form-row">
+                                                        
+                                                        <div div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 pt-2"> DOB :</div>
+                                                            <input  class="form-control p-1" type="date" id="pDOB" name="d_o_b">
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 pt-2"> Gender : </div>
+                                                            <select class="form-control" id="pGender" name="gender" placeholder="Gender"  required="true">
+                                                                <option checked> Select </option>
+                                                                <option> Male </option>
+                                                                <option> Female </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <h6 style="font-size:13px;" class="text-left ml-4" id="pDOBCheck"></h6>
+                                                
+                                                    <div class="form-row">
+                                                        <div class="col-md-5">
+                                                            <div class="formlabel text-left pb-1 pt-2">Mobile No :</div>
+                                                            <input type="text" class="form-control" id="pMobileNo" name="mobile_no" placeholder="Mobile No"  required="true">
+                                                            <h6 style="font-size:13px;" class="text-left" id="pMobileNoCheck"></h6>
+                                                        </div>
+
+                                                        <div class="col-md-5">
+                                                            <div class="formlabel text-left pb-1 pt-2">E-mail :</div>
+                                                            <input type="email" class="form-control" id="pEmail" name="e_mail" placeholder="E-mail"  required="true">
+                                                            <h6 style="font-size:13px;" class="text-left" id="pEmailCheck"></h6>
+                                                        </div>
+                                                    </div>
+                                                
+
+                                                    <div class="form-row">										
+                                                        <div class="col-md-5">
+                                                            <div class="formlabel text-left pb-1 pt-2"> Password :</div>
+                                                            <input type="password" class="form-control" id="pPassword" name="pass_word" placeholder="Password"  required="true">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-row">
+                                                        <div class="col-md-10">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input type="button" name="submit" class="btn btn-block btn-primary add-btn" value=" Add ">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <table class="patienttable table table-bordered" style="background-color:white;">
+                                        <thead>
+                                        <tr>
+                                            <th>PID</th>
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name</th>
+                                            <th>DOB</th>
+                                            <th>Gender</th>
+                                            <th>Mobile No.</th>
+                                            <th>E-Mail</th>
+                                            <th class="text-center">Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>  
+                                        
+                                            {% for pat in patinfo %}
+                                                <tr>
+                                                    <td>{{pat.pid}}</td>
+                                                    <td class="editable" data-type="firstname">{{pat.first_name}}</td>
+                                                    <td class="editable" data-type="middlename">{{pat.middle_name}}</td>
+                                                    <td class="editable" data-type="lastname">{{pat.last_name}}</td>
+                                                    <td class="editable" data-type="dob">{{pat.d_o_b}}</td>
+                                                    <td class="editable" data-type="gender">{{pat.gender}}</td>
+                                                    <td class="editable" data-type="mobileno">{{pat.mobile_no}}</td>
+                                                    <td class="editable" data-type="email">{{pat.e_mail}}</td>
+                                                    <td style="width: 4%;"><i class="fas fa-times btn btn-block btn-delete" style="color:red;"></i></td>
+                                                </tr>
+                                        
+                                            {% endfor %}
+                                                
+                                        </tbody>
+                                    </table>
+                                </div>
+                    
+                            </div>
+                        </div>
+            
+
+
+                        <div id="doctors" class="tab-pane fade in">
+                            <div class="container-fluid px-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 mt-lg-4 mt-4">
+                                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                            <h1 class="h3 mb-0 text-gray-800"> Manage Doctors</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-4" style="width:85%;">
+
+                                    <div class="form-row toolbar form-group">
+                                        <div class="col-md-10">
+                                        </div>
+                                        <div class="col-md-1 ">
+                                            <button class="btn btn-block btn-primary"  data-toggle="modal" data-target="#adddoctor">Add</button>
+                                        </div>
+                                        <div class="col-md-1 ">
+                                            <button class="btn btn-block btn-secondary" id="update_btn_doc">Edit</button>
+                                            <button class="btn btn-block btn-success" id="save_all_btn_doc" style="display:none;margin-top:0px">Save</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="adddoctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title container text-center">Add Doctor</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </div>
+                                                <div class="modal-body">
+                                                
+                                                <form method="POST" id="addpatientform">
+                                                {% csrf_token %}
+
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 ">Doctor Name :</div>
+                                                            <input  type="text" class="form-control" id="dFirstName" name="first_name" placeholder="First Name"  required="true">
+                                                            
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 " >&nbsp</div>
+                                                            <input type="text" class="form-control" id="dMiddleName" name="middle_name" placeholder="Middle Name"  required="true">
+                                                        </div>
+
+                                                        <div class=" col-md-4">
+                                                            <div class="formlabel text-left pb-1 " >&nbsp</div>
+                                                            <input type="text" class="form-control" id="dLastName" name="last_name" placeholder="Last Name"  required="true">
+                                                        </div>
+                                                        
+                                                    </div>
+                                            
+                                                    <div class="form-row">
+                                                        
+                                                        <div div class="col-md-6">
+                                                            <div class="formlabel text-left pb-1 pt-2"> Department :</div>
+                                                            <select class="form-control" id="dDepartment" name="depart_ment" required="true">
+                                                                <option selected disabled> Select </option>
+                                                                {% for dept in deptinfo %}
+                                                                    <option value ="{{dept.dept_name}}">{{dept.dept_name}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 pt-2"> Gender : </div>
+                                                            <select class="form-control" id="dGender" name="gender" placeholder="Gender"  required="true">
+                                                                <option selected disabled> Select </option>
+                                                                <option> Male </option>
+                                                                <option> Female </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>    
+
+                                                    <div class="form-row">
+
+                                                        <div div class="col-md-4">
+                                                            <div class="formlabel text-left pb-1 pt-2"> DOB :</div>
+                                                            <input  class="form-control p-1" type="date" id="dDOB" name="d_o_b">
+                                                        </div>
+
+                                                        <div class="col-md-5">
+                                                            <div class="formlabel text-left pb-1 pt-2">Mobile No :</div>
+                                                            <input type="text" class="form-control" id="dMobileNo" name="mobile_no" placeholder="Mobile No"  required="true">
+                                                            <h6 style="font-size:13px;" class="text-left" id="pMobileNoCheck"></h6>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                
+                                                    <div class="form-row">
+                                                        <div class="col-md-5">
+                                                            <div class="formlabel text-left pb-1 pt-2">E-mail :</div>
+                                                            <input type="email" class="form-control" id="dEmail" name="e_mail" placeholder="E-mail"  required="true">
+                                                            <h6 style="font-size:13px;" class="text-left" id="pEmailCheck"></h6>
+                                                        </div>									
+                                                        <div class="col-md-5">
+                                                            <div class="formlabel text-left pb-1 pt-2"> Password :</div>
+                                                            <input type="password" class="form-control" id="dPassword" name="pass_word" placeholder="Password"  required="true">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="col-md-10">
+                                                        </div>
+                                                        <div class="col-md-2 pt-4">
+                                                            <input type="button" name="submit" class="btn btn-block btn-primary add-btn-doc" value=" Add ">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <table class="doctortable table table-bordered" style="background-color:white;">
+                                        <thead>
+                                        <tr>
+                                            <th>DID</th>
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name</th>
+                                            <th>Department</th>
+                                            <th>Gender</th>
+                                            <th>DOB</th>
+                                            <th>Mobile No.</th>
+                                            <th>E-Mail</th>
+                                            <th class="text-center">Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>  
+                                        
+                                            {% for doc in docinfo %}
+                                                <tr>
+                                                    <td>{{doc.did}}</td>
+                                                    <td class="editable" data-type="firstname" id="d">{{doc.first_name}}</td>
+                                                    <td class="editable" data-type="middlename" id="d">{{doc.middle_name}}</td>
+                                                    <td class="editable" data-type="lastname" id="d">{{doc.last_name}}</td>
+                                                    <td class="editable" data-type="department" id="d">{{doc.depart_ment}}</td>
+                                                    <td class="editable" data-type="gender" id="d">{{doc.gender}}</td>
+                                                    <td class="editable" data-type="dob" id="d">{{doc.d_o_b}}</td>
+                                                    <td class="editable" data-type="mobileno" id="d">{{doc.mobile_no}}</td>
+                                                    <td class="editable" data-type="email" id="d">{{doc.e_mail}}</td>
+                                                    <td style="width: 4%;" ><i class="fas fa-times btn btn-block btn-delete-doc" style="color:red;"></i></td>
+                                                </tr>
+                                        
+                                            {% endfor %}
+                                                
+                                        </tbody>
+                                    </table>
+                                </div>     
+                            </div>
+                        </div>
+
+                        <div id="appointments" class="tab-pane fade in">
+                            <div class="container-fluid px-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12 mt-lg-4 mt-4">
+                                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                            <h1 class="h3 mb-0 text-gray-800"> Appointments</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ml-5" style="width:85%;">
+                                
+                                </div>
+
+                                <div class="addbtn">
+                                    <button type="button" class="btn btn-primary"><i class="fas fa-plus" style="color:white"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                   
+                </div>
+            </div>
+        </div>  
+    </div>
+
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   
+    <script>
+
+    $('#bar').click(function(){
+        $(this).toggleClass('open');
+        $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled' );
+
+    });
+
+    $(function(){
+        $('navbar-nav.nav-link').on('click',function(){
+            $(this).parent().find('li.active').removeCLass('active');
+            $(this).addClass('active');
+        })
+    });
+
+    $(document).ready(function(){
+        console.log("animated")
+        var $select1 =$('#select1'),
+            $select2 =$('#select2'),
+            $options = $select2.find('option');
+            $select1.on('change',function(){
+                $select2.html($options.filter('[value="'+this.value+'"]'));
+            }).trigger('change');
+    });
+   
+    $(document).ready(function () {
+        
+        window.setTimeout(function() {
+            $(".alert").fadeTo(300, 0).slideUp(300, function(){
+                $(this).remove(); 
+            });
+        }, 3000);
+        
+    });
+
+    </script>
+
+    <!-- Patient -->
+
+    <script>
+       $(".add-btn").click(function(){
+            
+            var firstname=$("#pFirstName").val();
+            var lastname=$("#pLastName").val();
+            var middlename=$("#pMiddleName").val();
+            var dob=$("#pDOB").val();
+            var rev = dob.split("-");
+            dob = rev[2]+"/"+rev[1]+"/"+rev[0]
+            var gender=$("#pGender").val();
+            var mobileno=$("#pMobileNo").val();
+            var email=$("#pEmail").val();
+            var password=$("#pPassword").val();
+          
+            $ .ajax({
+                url:'{% url "addpatientbyadmin" %}',
+                type:'POST',
+                data : {
+                    firstname:firstname,
+                    lastname:lastname,
+                    middlename:middlename,
+                    mobileno:mobileno,
+                    dob:dob,
+                    email:email,
+                    password:password,
+                    gender:gender,
+                    }
+            })
+
+            .done(function(response){
+                var html_data="<tr><td>"+response.pid+"</td><td class='editable' data-type='firstname'>"+firstname+"</td><td class='editable' data-type='middlename'>"+middlename+"</td><td class='editable' data-type='lastname'>"+lastname+"</td><td class='editable' data-type='dob'>"+dob+"</td><td class='editable' data-type='gender'>"+gender+"</td><td class='editable' data-type='mobileno'>"+mobileno+"</td><td class='editable' data-type='email'>"+email+"</td><td><i class='fas fa-times btn btn-block btn-delete' style='color:red;'></i></td></tr>"
+                document.getElementById('pFirstName').value = '';
+                document.getElementById('pLastName').value = '';
+                document.getElementById('pMiddleName').value = '';
+                document.getElementById('pGender').value = 'Select';
+                document.getElementById('dDepartment').value = 'Select';
+                document.getElementById('pDOB').value = 'dd/mm/yyyy';
+                document.getElementById('pEmail').value = '';
+                document.getElementById('pDOB').value = '';
+                document.getElementById('pPassword').value = '';
+                document.getElementById('pMobileNo').value = '';
+                $(".patienttable tbody").append(html_data);
+            })
+        });
+
+
+        $("#update_btn").click(function(){
+            $("#update_btn").hide();
+            $("#save_all_btn").show();
+
+            $(".editable").each(function(){
+                var types=$(this).data('type');
+                var value=$(this).text();
+                if(types =='dob' && types !='gender'){
+                    console.log('in');
+                    var rev = value.split("/");
+                    value = rev[2]+"-"+rev[1]+"-"+rev[0];
+                    var html_data="<input type='date' name='"+types+"' size='"+8+"' class='input_"+types+"' value='"+value+"'>";
+                    $(this).html(html_data);
+                }
+                else if(types =='gender' && types !='dob')
+                {
+                    var html_data="<select name='"+types+"'  class='input_"+types+" input_data'>";
+                    if(value=="Male"){
+                        html_data+="<option selected>Male</option><option>Female</option>";
+                    }
+                    else{
+                        html_data+="<option>Male</option><option selected>Female</option>";
+                    }
+                    html_data+="</select>";
+                    $(this).html(html_data);
+                }
+                else{
+                    var html_data="<input type='text' name='"+types+"' size='"+8+"' class='input_"+types+" input_data' value='"+value+"'>";
+                    $(this).html(html_data);
+                }
+            });
+        });
+
+        
+
+        $("#save_all_btn").click(function(){
+            $("#save_all_btn").attr("disabled","disabled");
+
+            var json_data=[];
+            $(".input_data").each(function(){
+                    var value=$(this).val();
+                    var parent_html=$(this).parent();
+                    parent_html.html(value);
+                    $(this).remove();
+            });
+             $(".input_dob").each(function(){
+                    var value=$(this).val();
+
+                    var rev = value.split("-");
+                    value = rev[2]+"/"+rev[1]+"/"+rev[0];
+
+                    var parent_html=$(this).parent();
+                    parent_html.html(value);
+                    $(this).remove();
+            });
+            $(".patienttable tbody tr").each(function(){
+                var pid=$(this).children().eq(0).text()
+                var firstname=$(this).children().eq(1).text()
+                var middlename=$(this).children().eq(2).text()
+                var lastname=$(this).children().eq(3).text()
+                var dob=$(this).children().eq(4).text()
+                var gender=$(this).children().eq(5).text()
+                var mobileno=$(this).children().eq(6).text()
+                var email=$(this).children().eq(7).text()
+
+                var single_data={"pid":pid,"firstname":firstname,"middlename":middlename,"lastname":lastname,"dob":dob,"gender":gender,"mobileno":mobileno,"email":email,};
+                json_data.push(single_data);
+            });
+
+            var string_data=JSON.stringify(json_data)
+            $.ajax({
+                url:'{% url "updatepatientbyadmin" %}',
+                type:'POST',
+                data:{data:string_data}
+            })
+                
+            .always(function(){
+                $("#save_all_btn").removeAttr("disabled");
+                $("#save_all_btn").text("Save");
+                $("#update_btn").show();
+                $("#save_all_btn").hide();
+            })
+
+        });
+
+        $(document).on("click",".btn-delete",function(){
+            var this_html=$(this);
+            this_html.attr("disabled","disabled");
+            var id=this_html.parent().parent().children().first().text();
+            console.log(id);
+              $.ajax({
+                url:'{% url "deletepatientbyadmin" %}',
+                type:'POST',
+                data:{id:id}
+            })
+            this_html.parent().parent().remove(); 
+        });
+    </script>
+
+    <!-- DEPARTMENT -->
+    <script>
+           $(".add-btn-dept").click(function(){
+                
+                var deptname=$("#DeptName").val();
+                if(deptname==""){
+                    return;
+                }
+
+                $ .ajax({
+                    url:'{% url "adddepartmentbyadmin" %}',
+                    type:'POST',
+                    data : {
+                        deptname:deptname,
+                    }
+                })
+    
+                .done(function(response){
+                    var html_data="<tr><td>"+response.deptid+"</td><td class='editable'>"+deptname+"</td><td><i class='fas fa-times btn btn-block btn-delete-dept' style='color:red;'></i></td></tr>"
+                    document.getElementById('DeptName').value = '';
+                    $(".depttable tbody").append(html_data);
+                })
+            });
+
+            $("#update_btn_dept").click(function(){
+                $("#update_btn_dept").hide();
+                $("#save_all_btn_dept").show();
+    
+                $(".editable").each(function(){
+                    var types=$(this).data('type');
+                    var value=$(this).text();
+                
+                    var html_data="<input type='text' name='"+types+"' size='"+20+"' class='input_"+types+" input_data' value='"+value+"'>";
+                    $(this).html(html_data);
+                    
+                });
+            });
+
+             $("#save_all_btn_dept").click(function(){
+                $("#save_all_btn_dept").attr("disabled","disabled");
+    
+                var json_data=[];
+                $(".input_data").each(function(){
+                        var value=$(this).val();
+                        var parent_html=$(this).parent();
+                        parent_html.html(value);
+                        $(this).remove();
+                });
+                $(".depttable tbody tr").each(function(){
+                    var deptid=$(this).children().eq(0).text()
+                    var deptname=$(this).children().eq(1).text()
+    
+                    var single_data={"deptid":deptid,"deptname":deptname};
+                    json_data.push(single_data);
+                });
+    
+                var string_data=JSON.stringify(json_data)
+                $.ajax({
+                    url:'{% url "updatedepartmentbyadmin" %}',
+                    type:'POST',
+                    data:{data:string_data}
+                })
+                    
+                .always(function(){
+                    $("#save_all_btn_dept").removeAttr("disabled");
+                    $("#save_all_btn_dept").text("Save");
+                    $("#update_btn_dept").show();
+                    $("#save_all_btn_dept").hide();
+                })
+    
+            });
+
+            $(document).on("click",".btn-delete-dept",function(){
+                var this_html=$(this);
+                this_html.attr("disabled","disabled");
+                var id=this_html.parent().parent().children().first().text();
+                console.log(id);
+                  $.ajax({
+                    url:'{% url "deletedepartmentbyadmin" %}',
+                    type:'POST',
+                    data:{id:id}
+                })
+                this_html.parent().parent().remove(); 
+            });
+
+    </script>
+
+    <!-- DOCTOR -->
+
+    <script>
+
+         $(".add-btn-doc").click(function(){
+            
+            var firstname=$("#dFirstName").val();
+            var lastname=$("#dLastName").val();
+            var middlename=$("#dMiddleName").val();
+            var department=$("#dDepartment").val();
+            var dob=$("#dDOB").val();
+            var rev = dob.split("-");
+            dob = rev[2]+"/"+rev[1]+"/"+rev[0]
+            var gender=$("#dGender").val();
+            var mobileno=$("#dMobileNo").val();
+            var email=$("#dEmail").val();
+            var password=$("#dPassword").val();
+            console.log(middlename);
+            
+            $ .ajax({
+                url:'{% url "adddoctorbyadmin" %}',
+                type:'POST',
+                data : {
+                    firstname:firstname,
+                    lastname:lastname,
+                    middlename:middlename,
+                    department:department,
+                    mobileno:mobileno,
+                    dob:dob,
+                    email:email,
+                    password:password,
+                    gender:gender,
+                    }
+            })
+            
+
+            .done(function(response){
+                var html_data="<tr><td>"+response.did+"</td><td class='editable'>"+firstname+"</td><td class='editable'>"+middlename+"</td><td class='editable'>"+lastname+"</td><td class='editable'>"+department+"</td><td class='editable' data-type='gender'>"+gender+"</td><td class='editable' data-type='dob'>"+dob+"</td><td class='editable'>"+mobileno+"</td><td class='editable'>"+email+"</td><td><i class='fas fa-times btn btn-block btn-delete-doc' style='color:red;'></i></td></tr>"
+                document.getElementById('dFirstName').value = '';
+                document.getElementById('dLastName').value = '';
+                document.getElementById('dMiddleName').value = '';
+                document.getElementById('dDepartment').value = 'Select';
+                document.getElementById('dGender').value = 'Select';
+                document.getElementById('dDOB').value = 'dd/mm/yyyy';
+                document.getElementById('dEmail').value = '';
+                document.getElementById('dPassword').value = '';
+                document.getElementById('dMobileNo').value = '';
+                $(".doctortable tbody").append(html_data);
+            })
+        });
+
+
+        $("#update_btn_doc").click(function(){
+            $("#update_btn_doc").hide();
+            $("#save_all_btn_doc").show();
+
+            $(".editable").each(function(){
+                var types=$(this).data('type');
+                var value=$(this).text();
+                if(types =='dob' && types !='gender'){
+                    console.log('in');
+                    var rev = value.split("/");
+                    value = rev[2]+"-"+rev[1]+"-"+rev[0];
+                    var html_data="<input type='date' name='"+types+"' size='"+8+"' class='input_"+types+"' value='"+value+"'>";
+                    $(this).html(html_data);
+                }
+                else if(types =='gender' && types !='dob')
+                {
+                    var html_data="<select name='"+types+"'  class='input_"+types+" input_data'>";
+                    if(value=="Male"){
+                        html_data+="<option selected>Male</option><option>Female</option>";
+                    }
+                    else{
+                        html_data+="<option>Male</option><option selected>Female</option>";
+                    }
+                    html_data+="</select>";
+                    $(this).html(html_data);
+                }
+                else{
+                    var html_data="<input type='text' name='"+types+"' size='"+8+"' class='input_"+types+" input_data' value='"+value+"'>";
+                    $(this).html(html_data);
+                }
+            });
+        });
+        $("#save_all_btn_doc").click(function(){
+            $("#save_all_btn_doc").attr("disabled","disabled");
+
+            var json_data=[];
+            $(".input_data").each(function(){
+                    var value=$(this).val();
+                    var parent_html=$(this).parent();
+                    parent_html.html(value);
+                    $(this).remove();
+            });
+            $(".input_dob").each(function(){
+                    var value=$(this).val();
+
+                    var rev = value.split("-");
+                    value = rev[2]+"/"+rev[1]+"/"+rev[0];
+
+                    var parent_html=$(this).parent();
+                    parent_html.html(value);
+                    $(this).remove();
+            });
+            $(".doctortable tbody tr").each(function(){
+                var did=$(this).children().eq(0).text()
+                var firstname=$(this).children().eq(1).text()
+                var middlename=$(this).children().eq(2).text()
+                var lastname=$(this).children().eq(3).text()
+                var department=$(this).children().eq(4).text()
+                var gender=$(this).children().eq(5).text()
+                var dob=$(this).children().eq(6).text()
+                var mobileno=$(this).children().eq(7).text()
+                var email=$(this).children().eq(8).text()
+
+                var single_data={"did":did,"firstname":firstname,"middlename":middlename,"lastname":lastname,"department":department,"dob":dob,"gender":gender,"mobileno":mobileno,"email":email};
+                json_data.push(single_data);
+            });
+
+            var string_data=JSON.stringify(json_data)
+            $.ajax({
+                url:'{% url "updatedoctorbyadmin" %}',
+                type:'POST',
+                data:{data:string_data}
+            })
+                
+            .always(function(){
+                $("#save_all_btn_doc").removeAttr("disabled");
+                $("#save_all_btn_doc").text("Save");
+                $("#update_btn_doc").show();
+                $("#save_all_btn_doc").hide();
+            })
+
+        });
+
+        $(document).on("click",".btn-delete-doc",function(){
+            var this_html=$(this);
+            this_html.attr("disabled","disabled");
+            var id=this_html.parent().parent().children().first().text();
+            console.log(id);
+              $.ajax({
+                url:'{% url "deletedoctorbyadmin" %}',
+                type:'POST',
+                data:{id:id}
+            })
+            this_html.parent().parent().remove(); 
+        });
+
+    </script>
+
+</body>
+</html>
+

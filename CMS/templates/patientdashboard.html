@@ -1,0 +1,499 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <title>Patient | Dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<!--fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var $select1 =$('#select1'),
+            $select2 =$('#select2'),
+            $options = $select2.find('option');
+        console.log('hi')
+            $select1.on('change',function(){
+                $select2.html($options.filter('[name="'+this.value+'"]'));
+            }).trigger('change');
+
+
+        var date = new Date();
+        month  = (date.getMonth()+1)
+        if(month < 10)
+        {
+            month = "0" + month;
+        }
+        var d = date.getFullYear() + "-" + month + "-" + date.getDate();
+        console.log(d)
+        $('#AptDate').attr("min",d);
+        
+        window.setTimeout(function() {
+            $(".msg").fadeTo(300, 0).slideUp(300, function(){
+                $(this).remove(); 
+            });
+        }, 2000);
+        
+        });
+    </script>
+  </head>
+
+
+
+  <body>
+
+    
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <nav class="fixed-top align-top bg-dark toggled" id="sidebar-wrapper" role="navigation">
+        <div class="simplebar-content" style="padding: 0px;">
+                <a class="sidebar-brand" >
+                    <span class="text-center text-white"><h4>C M S</h4></span>
+                </a>
+
+                <ul class="navbar-nav nav nav-tabs align-self-stretch">
+
+                    <li class="sidebar-header text-center"> NAVIGATION </li>
+                    <li>
+                        <a class="nav-link text-left active" data-toggle = "tab" href="#dashboard">
+                            <i class="fas fa-tachometer-alt" style="color:white"></i>  Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-left" data-toggle = "tab" href="#profile" >
+                            <i class="fas fa-smile" style="color:white"></i>   Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link text-left" data-toggle = "tab" href="#bookappointment">
+                            <i class="fas fa-notes-medical" style="color:white"></i>   Book Appointment
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link text-left" data-toggle = "tab" href="#appointmenthistory" >
+                            <i class="fas fa-book-medical" style="color:white"></i>    Appointment History
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div id="content">
+                <div class="container-fluid p-0 px-lg-0 px-md-0">
+        <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light my-navbar">
+        <!-- Sidebar Toggle (Topbar) -->
+                        <!-- Topbar Search -->
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto list-inline">
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <!-- Nav Item - Alerts -->
+                        <!-- Nav Item - Messages -->
+                        <!-- Nav Item - User Information -->
+                        <li class="list-inline-item text-right">
+                                <li class="list-inline-item text-right">
+                                    <i class="fas fa-user fa-2x mt-3 pt-2 mr-1" style="color:#38ACEC;"></i>  
+                                </li>
+                                <span class="mt-1 pt-4 pr-3"> {% for i in userinfo %} {{i.first_name}} {{i.last_name}}{% endfor %}</span>
+                            </li>
+                                 <a href="../" class="mt-3 mb-3 mr-3 pt-1 pb-1"> <button class="btn btn-danger" style="color:white;"><i class="fas fa-power-off pt-1 pb-1"></i> </button> </a>
+                        </ul>
+                    </nav>
+
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} alert-dismissible fade show msg" role="alert">
+                    <strong class="text-center">
+                        <h6>{{message}}</h6>
+                    </strong>
+                    </div>
+                {% endfor %}
+                
+
+
+                <div class="tab-content">
+                  
+                    <div id="profile" class="tab-pane fade in">
+                        <div class="container-fluid px-lg-4">
+                            <div class="row">
+                                <div class="col-md-12 mt-lg-4 mt-4">
+                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                        <h1 class="h3 mb-0 text-gray-800"> My Profile</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                <div class="ml-5" style="width:60%;">
+                               
+                            
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <h6> You can update your Profile ! </h6> 
+                                    </div>
+                                
+
+                            <form method="POST" action={% url 'updateprofile' %} >
+                            {% csrf_token %}
+                            {% for i in userinfo %}
+
+                                <div class="form-row m-3 ">
+                                    <div class="col-md-4 mt-3">
+                                        <div class="formlabel text-left">First Name :</div>
+                                        <input type="text" class="form-control" id="pFirstName" name="first_name" placeholder="First Name" value= {{ i.first_name}}  required="true">
+                                    </div>
+
+                                    <div class="col-md-4 mt-3">
+                                        <div class="formlabel text-left">Middle Name :</div>
+                                        <input type="text" class="form-control" id="pMiddleName" name="middle_name" placeholder="Middle Name" value= {{ i.middle_name}} required="true">
+                                    </div>
+                                    
+                                    <div class="col-md-4 mt-3">
+                                        <div class="formlabel text-left">Last Name :</div>
+                                        <input type="text" class="form-control" id="pLastName" name="last_name" placeholder="Last Name" value= {{ i.last_name}} required="true">
+                                    </div>
+                                </div>
+
+                                <div class="form-row m-3">
+                                    
+                                    <div class="col-md-3">
+                                        <div class="formlabel text-left">DOB :</div>
+                                        <input type="text" class="form-control" id="pDOB" name="d_o_b" placeholder="dd/mm/yyyy" value= {{ i.d_o_b}} required="true">
+                                    </div>
+                                    <div class="col-md-3">
+                                             
+                                            <div class="formlabel text-left"> Gender : </div>
+                                            {% if i.gender == 'Male' %}
+                                                <select class="form-control" id="pGender" name="gender" placeholder="Gender" required="true">
+                                                    <option selected> Male </option>
+                                                    <option> Female </option>
+                                                </select>
+                                            {% else %}
+                                                <select class="form-control" id="pGender" name="gender" placeholder="Gender" required="true">
+                                                    <option> Male </option>
+                                                    <option selected> Female </option>
+                                                </select>   
+                                            {% endif %}
+                                            
+            
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="formlabel text-left">Mobile No :</div>
+                                        <input type="text" class="form-control" id="pMobileNo" name="mobile_no" placeholder="Mobile No" value= {{ i.mobile_no}} required="true">
+                                    </div>
+                                </div>
+
+                                <div class="form-row m-3">
+
+                                    <div class="col-md-4">
+                                        <div class="formlabel text-left">E-mail :</div>
+                                        <input readonly type="text" class="form-control" id="pEmail" name="e_mail" placeholder="E-mail" value= {{ i.e_mail}} required="true">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="formlabel text-left"> Password :</div>
+                                        <input type="password" class="form-control" id="pPass" name="pass_word" placeholder="Password" value= {{ i.pass_word}} required="true">
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="text-right mt-4 ">
+                                        <button type="submit" id="update_button" class="btn btn-primary" > &nbsp Update &nbsp</button>                                 
+                                </div>
+
+                            {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                    
+                    
+
+                    <div id="dashboard" class="tab-pane active">
+                        <div class="container-fluid px-lg-4">
+                            <div class="row">
+                                <div class="col-md-12 mt-lg-4 mt-4">
+                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                        <h1 class="h3 mb-0 text-gray-800"> Dashboard</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+        
+                        <div class="form-row ml-4">
+                           
+                            <div class="col-md-3 m-2 p-4 dashbox ">
+                                <div class="mt-3 mb-3 text-center">
+                                    <div class="panel-body">
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fas fa-smile" style="font-size:45px;color:#007bff"></i>
+                                        </span>
+                                        <h5 class="m-3 dashhead">My Profile</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-3 m-2 p-4 dashbox">
+                                <div class="mt-3 mb-3 s text-center">
+                                    <div class="panel-body">
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fas fa-notes-medical" style="font-size:45px;color:#007bff"></i>
+                                        </span>
+                                        <h5 class="m-3 dashhead">Book Appointment</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-2 p-4 dashbox">
+                                <div class="mt-3 mb-3  text-center">
+                                    <div class="panel-body">
+                                        <span class="fa-stack fa-2x">
+                                        <i class="fas fa-book-medical" style="font-size:45px;color:#007bff"90></i>
+                                        </span>
+                                        <h5 class="m-3 dashhead">Appointment History</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="bookappointment" class="tab-pane fade in">
+
+                        <div class="container-fluid px-lg-4">
+                            <div class="row">
+                                <div class="col-md-12 mt-lg-4 mt-4">
+                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                        <h1 class="h3 mb-0 text-gray-800"> Book Appointment</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-5" style="width:60%;">
+                        <form method="POST" action="{% url 'bookappointment' %}">
+                            {% csrf_token %}
+                                {% for i in userinfo %}
+                                   
+                                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                        <h6>Note : You will get your Appointment ID after booking. </h6> 
+                                       
+                                    </div>
+
+                                    
+
+
+                                <div class="form-row m-3">
+
+                                    <div class="mt-3 col-md-2"> 
+                                        <div class="formlabel text-left">PID :</div>
+                                        <input readonly type="text" class="form-control text-center" name="pid"  value= {{ i.pid}} required="true">
+                                    </div>
+                                    <div class="mt-3  col-md-6">
+                                         <div class="formlabel text-left">Patient Name :</div>
+                                        <input readonly type="text" class="form-control" name="pat_name"  value= "{{ i.first_name}} {{i.middle_name}} {{i.last_name}}" required="true">
+                                        
+                                    </div>
+                                    
+                                </div>
+
+
+                                    
+                                    
+
+                                <div class="form-row m-3">
+                                    <div class=" col-md-4">
+                                        <div class="formlabel text-left">Doctor Specialization :</div>
+                                        <select id="select1" class="mt-1 p-2 form-control" style="width:215px; border-radius:4px;" name="doc_spec" required="true">
+                                            <option selected disabled="true"> Select </option>
+                                            {% for dept in deptinfo %}
+                                            <option value ="{{dept.dept_id}}">{{dept.dept_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="formlabel text-left">Doctor Name :</div>
+                                        <select id="select2" class="mt-1 p-2 form-control" style="width:215px; border-radius:4px;" name="doc_name" required="true">
+                                            <option selected disabled="true" > Select </option>
+                                            {% for doc in docinfo %}
+                                            <option name ="{{doc.dept_id}}" value="{{doc.first_name}} {{doc.last_name}}">Dr. {{doc.first_name}} {{doc.last_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    
+                                </div>  
+                               
+
+                                <div class="form-row m-3">
+                                    <div class="col-md-4">
+                                        <div class="formlabel text-left">Date :</div>
+                                        <input type="date" id="AptDate" class="p-1 form-control" style="width:195px; border-radius:4px;" name="apt_date" required="true" >
+                                    </div>
+                                </div>
+                                
+
+                                <div class="form-row m-3">
+                                    
+                                    <div class="col-md-4">
+                                        <div class="formlabel text-left"><span>Time :</span></div>
+                                        <input type="time"  class="p-1 form-control" style="width:165px; border-radius:4px;" name="apt_time" required="true" min="09:00" max="18:00" >
+                                    </div>
+                                    
+                                </div>
+                                 <span style="font-size:13px; padding-left:20px;">Must be between 09:00 am - 07:00 pm + May vary according to doctor schedule.</span>
+
+                                    <div class=" text-right mb-3  mt-3">
+                                        <button type="submit" id="book" class="btn btn-primary" > &nbsp Book &nbsp </button> 
+                                    </div>
+
+                                 
+                                {% endfor %}  
+                        </form>
+                        </div>
+
+                    </div>
+
+
+
+                    <div id="appointmenthistory" class="tab-pane fade in">
+
+                        <div class="container-fluid px-lg-4">
+                            <div class="row">
+                                <div class="col-md-12 mt-lg-4 mt-4">
+                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                        <h1 class="h3 mb-0 text-gray-800">Appointment History</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-5" style="width:85%;">
+                            
+                            <table class="table table-bordered" style="background-color:white; max-width:95%;">
+                                <thead>
+                                <tr>
+                                    <th>Apt No.</th>
+                                    <th>Doctor Specialization</th>
+                                    <th>Doctor Name</th>
+                                    <th>Appointment Date - Time</th>
+                                    <th>Booking Date - Time</th>
+                                    <th>Cancel</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if appinfo|length > 0 %}
+                                    {% for app in appinfo %}
+                                        <tr>
+                                            <td class='text-center'>{{app.apt_id}}</td>
+                                            <td>{{app.doc_spec}}</td>
+                                            <td>{{app.doc_name}}</td>
+                                            <td>{{app.apt_date}} - {{app.apt_time}}</td>
+                                            <td>{{app.book_date}} - {{app.book_time}}</td>
+                                            {% if app.status == 'Canceled' %}
+                                            <td colspan="2" class="text-center">Canceled by Doctor</td>
+                                            {% elif app.status == 'Canceled by Patient' %}
+                                            <td colspan="2" class="text-center">Canceled by You</td>
+                                            {% elif app.status == 'Completed' %}
+                                            <td colspan="2" class="text-center">Completed</td>
+                                            {% elif app.remark == ' ' %}
+                                            <td><a href="{% url 'cancelappointment' app.pid app.apt_id %}" ><i class="fas fa-times" style="color:red; margin-left:35%;"></i></a></td>   
+                                            <td class="text-center">{{app.status}}</td>
+                                            {% else %}
+                                            <td><a href="{% url 'cancelappointment' app.pid app.apt_id %}" ><i class="fas fa-times" style="color:red; margin-left:35%;"></i></a></td>   
+                                            <td class="text-center">{{app.status}}</td>
+                                            <td><i class="fas fa-exclamation-circle" style="color:blue; font-size:15px; cursor:pointer;" data-toggle="tooltip" data-placement="right" title="{{app.remark}}"></i></td>
+        
+                                          
+
+                                            
+                                            {% endif %}
+                                            
+                                            
+                                    
+                                            
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                        <tr>
+                                            <td colspan="8" class="text-center">NO &nbsp RECORDS &nbsp FOUND</td>
+                                        </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            
+                        </div>
+
+                    </div>
+
+
+
+
+    
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+
+    $('#bar').click(function(){
+        $(this).toggleClass('open');
+        $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled' );
+
+    });
+
+    $(function(){
+        $('navbar-nav.nav-link').on('click',function(){
+            $(this).parent().find('li.active').removeCLass('active');
+            $(this).addClass('active');
+        })
+    });
+
+    </script>
+
+    <script>
+        
+    </script>
+
+    </body>
+</html>
+

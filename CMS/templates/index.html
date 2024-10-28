@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C M S</title>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	{% load static %}
+	<!-- Style -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Candal&display=swap" rel="stylesheet">
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+        
+        window.setTimeout(function() {
+				$(".msg").fadeTo(50, 0).slideUp(300, function(){
+					$(this).remove(); 
+				});
+			}, 2000);
+
+			
+
+
+        
+        });
+   
+		$(function(){
+			$(".scrolllink").on('click',function(){
+				$("html,body").animate({
+					scrollTop: $($.attr(this,'href')).offset().top -79
+				},1000);
+			});
+			if(window.location.hash)
+			{
+				scroll(0,0);
+				window.setTimeout(function(){
+					scroll(0,0);
+				},1);
+			}
+			if(window.location.hash)
+			{
+				$("html,body").animate({
+					scrollTop: $(window.location.hash).offset().top + 'px' -83
+				},1000);
+			}
+			
+			$('.scrolllinkactive').click(function(event){
+				$('.active').removeClass('active');
+				$(this).addClass('active');
+				event.preventDefault();
+			});
+
+			$('.nav-item').click(function(event){
+				$('.active').removeClass('active');
+				$(this).addClass('active');
+				event.preventDefault();
+			});
+
+		});
+	</script>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md bg-white navbar-light fixed-top ">
+		<div class="container p-2 text-primary">
+			<a href="" class="navbar-brand"> Clinic Management System</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#collapsenavbar">
+				<span class="navbar-toggler-icon">
+				</span>
+			</button>
+			<div class="collapse navbar-collapse text-center" id="collapsenavbar">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active scrolllinkactive" >
+						<a href="#home" class="nav-link scrolllink "> Home </a>
+					</li>
+					<li class="nav-item scrolllinkactive">
+						<a href="#services" class="nav-link scrolllink"> Services</a>
+					</li>
+					<li class="nav-item scrolllinkactive">
+						<a href="#contact" class="nav-link scrolllink"> Contact</a>
+					</li>
+					<li class="nav-item scrolllinkactive">
+						<a href="#about" class="nav-link scrolllink"> About</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="container text-center hardreset text-white" id="home">
+		<h2>Clinic Management System</h2>
+		<br>
+		<h1>HEALTHCARE AT YOUR DESK!!</h1>
+		<br>
+		<h4>Manage your clinic effectively with CMS.</h4>
+	</div>
+
+	<div class="container">
+		{% for message in messages %}
+			<div class="alert alert-{{message.tags}} alert-dismissible fade in show msg" role="alert">
+			<strong class="text-center notification">
+							<h6>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{message}}</h6>
+			</strong>
+			</div>
+		{% endfor %}
+	</div>
+
+	<section class="container text-center">
+		<div class="row rowsetting">
+			<div class="col-lg-1 col-md-1 col-sm-1 mr-4 fixdiv" data-toggle="modal" data-target="#adminmodal" ></div>
+
+			<a  class="patientdiv col-3 mr-4" data-toggle="modal"  data-target="#patientmodal">
+				<i class="fas fa-user fa-5x" style="font-size:68px;color:#38ACEC;"></i>
+				<h4 class="mt-3 mb-4"> Patient </h4>
+			</a>
+
+			<!-- pop up patient-->
+			<div class="modal fade" id="patientmodal" tabindex="-1" role="dialog" aria-labelledby="patienttitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3 class="modal-title container text-center" id="patienttitle">Patient</h3>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body modalbg">
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="nav-item active">
+								<a class="nav-link" data-toggle="tab" href="#patient1" role="tab">LOG IN</a>
+								</li>
+								<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#patient2" role="tab">SIGN UP</a>
+								</li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content fborder">
+								<div class="tab-pane active" id="patient1" role="tabpanel">
+									<div class="alert alert-primary mt-3 ml-3 mr-3" role="alert">
+												Please enter your E-mail and Password to login.
+									</div>
+									<form method="POST">
+									{% csrf_token %}
+										<div class="ml-4  mr-4">
+												<div class="formlabel text-left">E-mail :</div>
+												<input type="text" class="form-control" id="pLoginEmail" placeholder="E-mail" name='login_e_mail' required="true">
+										</div>
+										<div class="ml-4  mr-4">
+												<div class="formlabel text-left">Password :</div>
+												<input type="password" class="form-control" id="pLoginPass" placeholder="Password" name='login_pass_word' required="true">
+										</div>
+										<div class=" text-right mb-4 mr-4 mt-4">
+											<button type="submit" id="login" class="btn btn-primary">&nbspLog In&nbsp</button>
+										</div>
+									</form>
+								</div>
+								<div class="tab-pane" id="patient2" role="tabpanel">
+									
+									<form method="POST">
+									{% csrf_token %}
+										
+											<div class="alert alert-primary m-3" role="alert"> Fill in the form to create your account. </div>
+										
+										<div class="form-row">
+											<div class="ml-4 col-md-3">
+												<div class="formlabel text-left" >Full Name :</div>
+												<input  type="text" class="form-control" id="pFirstName" name="first_name" placeholder="First Name" required="true">
+												
+											</div>
+
+											<div class="col-md-4">
+												<div class="formlabel text-left" >&nbsp</div>
+												<input type="text" class="form-control" id="pMiddleName" name="middle_name" placeholder="Middle Name" required="true">
+											</div>
+
+											<div class=" col-md-3">
+												<div class="formlabel text-left" >&nbsp</div>
+												<input type="text" class="form-control" id="pLastName" name="last_name" placeholder="Last Name" required="true">
+											</div>
+											
+										</div>
+										<h6 style="font-size:13px;" class="text-left ml-4" id="NameCheck"> </h6>
+										
+										<div class="form-row">
+
+											<div div class="col-md-4.5 ml-4">
+												<div class="formlabel text-left pb-1 pt-2"> DOB :</div>
+												<input  class="form-control p-1" type="date" id="pDOB" name="d_o_b"  required="true">
+											</div>
+
+											<div class="col-md-4">
+												<div class="formlabel text-left pb-1 pt-2"> Gender : </div>
+												<select class="form-control" id="pGender" name="gender" placeholder="Gender"  required="true">
+													<option checked> Select </option>
+													<option> Male </option>
+													<option> Female </option>
+												</select>
+											</div>
+										</div>
+									
+										<div class="form-row">
+											<div class="col-md-5 ml-4 mt-2">
+												<div class="formlabel text-left">Mobile No :</div>
+												<input type="text" class="form-control" id="pMobileNo" name="mobile_no" placeholder="Mobile No" required="true">
+												<h6 style="font-size:13px;" class="text-left" id="pMobileNoCheck"></h6>
+											</div>
+
+											<div class="col-md-5.5 mt-2">
+												<div class="formlabel text-left">E-mail :</div>
+												<input type="email" class="form-control" id="pEmail" name="e_mail" placeholder="E-mail" required="true">
+												<h6 style="font-size:13px;" class="text-left" id="pEmailCheck"></h6>
+											</div>
+										</div>
+									
+
+										<div class="form-row">
+										
+											<div class="col-md-5 mt-2 ml-4">
+												<div class="formlabel text-left"> Password :</div>
+												<input type="password" class="form-control" id="pPass" name="pass_word" placeholder="Password" required="true">
+												<h6 style="font-size:13px;" class="text-left"  id="pPassCheck"></h6>
+											</div>
+											<div class="mt-2 col-md-5">
+												<div class="formlabel text-left">Confirm Password :</div>
+												<input type="password" class="form-control" id="pConPass" name="confirm_pass_word" placeholder="Confirm Password" required="true">
+												<h6 style="font-size:13px;" class="text-left" id="pConPassCheck"></h6>
+											</div>
+										</div>
+
+
+
+										<div class=" text-right mb-4 mr-4 mt-4">
+											<button type="submit" id="signup" class="btn btn-primary" >Sign Up</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<a class="doctordiv col-3 mr-4" data-toggle="modal"data-target="#doctormodal">
+
+				<i class="fas fa-user-md fa-5x" style="font-size:68px;color:#38ACEC;"></i>
+
+			<h4 class="mt-3 mb-2"> Doctor </h4>
+			</a>
+
+			<!-- pop up doctor-->
+			<div class="modal fade" id="doctormodal" tabindex="-1" role="dialog" aria-labelledby="doctortitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h3 class="modal-title container text-center" id="doctortitle">Doctor</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+
+					<div class="modal-body modalbg">
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item active">
+						<a class="nav-link " data-toggle="tab" href="#doctor1" role="tab">LOG IN</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content fborder">
+						<div class="tab-pane active" id="doctor1" role="tabpanel">
+							<form method="POST">
+							{% csrf_token %}
+								<div class="alert alert-primary mt-3 ml-3 mr-3" role="alert">
+									Please enter your E-mail and Password to login.
+								</div>
+
+								<div class="ml-4  mr-4">
+									<div class="formlabel text-left">E-mail :</div>
+									<input type="text" class="form-control" id="pLoginEmail" placeholder="E-mail" name='doctor_e_mail' required="true">
+								</div>
+								<div class="ml-4  mr-4">
+									<div class="formlabel text-left">Password :</div>
+									<input type="password" class="form-control" id="pLoginPass" placeholder="Password" name='doctor_password' required="true">
+								</div>
+								<div class=" text-right mb-4 mr-4 mt-4">
+									<button type="submit" id="login" class="btn btn-primary">&nbspLog In&nbsp</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					</div>
+
+				</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="admindiv col-3 " data-toggle="modal" data-target="#adminmodal" >
+			
+					<i class="fas fa-user-cog fa-5x" style="font-size:65px;color:#38ACEC;"></i>
+					<h4 class="mt-3 mb-4"> Admin </h4>
+			</div>
+
+			<!-- pop up admin -->
+			<div class="modal fade" id="adminmodal" tabindex="-1" role="dialog" aria-labelledby="admintitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h3 class="modal-title container text-center" id="admintitle">Admin</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+
+						<div class="modal-body modalbg">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item active">
+							<a class="nav-link " data-toggle="tab" href="#admin1" role="tab">LOG IN</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content fborder">
+							<div class="tab-pane active" id="admin1" role="tabpanel">
+								<form method="POST">
+									{% csrf_token %} 
+									<div class="alert alert-primary mt-3 ml-3 mr-3" role="alert">
+									Please enter your E-mail and Password to login.
+									</div>
+
+									<div class="ml-4  mr-4">
+										<div class="formlabel text-left">E-mail :</div>
+										<input type="text" class="form-control" id="aLoginEmail" placeholder="E-mail" name='admin_e_mail' required="true">
+									</div>
+									<div class="ml-4  mr-4">
+										<div class="formlabel text-left">Password :</div>
+										<input type="password" class="form-control" id="aLoginPass" placeholder="Password" name='admin_pass_word' required="true">
+									</div>
+									<div class=" text-right mb-4 mr-4 mt-4">
+										<button type="submit" id="login" class="btn btn-primary">&nbspLog In&nbsp</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+	<h3 class="pb-4 pt-4 text-center text-white" id="services">SERVICES</h3>
+
+
+	
+
+
+		
+	<div class="bg-white">	
+		<div class="container features pt-4">
+			<div class="row featurediv">
+
+<div class="container ">
+               
+		<div class="row featurediv border mb-4 pt-2">
+
+			<div class="col-12 col-sm-12 col-md-4">
+					<div class="feature-content">
+						<div class="feature1"></div>
+							<h5 class="text-center pb-1">Patient Management System</h5>
+						<p> Includes patient registration, visit history, vitals, prescription & history. </p>
+					</div>
+			</div>
+
+			<div class="col-12 col-sm-12 col-md-4">
+					<div class="feature-content text-justify">
+						<div class="feature2"></div>
+							<h5 class="text-center pb-1">Appointment Mangement</h5>
+						<p>Very easy and intuitive way to manage patient appointment and Walk-Ins. Define doctor’s schedule & slot duration and manage appointments in a calendar view.</p>
+					</div>
+			</div>
+
+			<div class="col-12 col-sm-12 col-md-4 ">
+					<div class="feature-content text-justify">
+						<div class="feature3"></div>
+							<h5 class="text-center pb-1">Prescription Generation</h5>
+						    <p>Provides an easy way to generate Prescription for Doctors.</p>
+					</div>
+			</div>
+
+			<div class="col-12 col-sm-12 col-md-4">
+					<div class="feature-content text-justify">
+						<div class="feature-img"></div>
+							<h3></h3>
+						<p></p>
+					</div>
+			</div>
+
+
+
+		</div>
+
+	</div>
+
+			
+<div class="container">
+  <h4 class="text-center">Schedule</h4>
+  <br>
+             
+  <table class="table table-primary table-hover" >
+    <thead>
+      <tr>
+	  	<th>Time</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+		<th>Wednesday</th>
+		<th>Thursday</th>
+		<th>Friday</th>
+		<th>Saturday</th>
+		<th>Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>9:00 am - 1:00 pm</td>
+      </tr>
+	  <tr>
+        <td class="text-center" colspan="8"><h6>LUNCH BREAK<h6></td>
+      <tr>
+        <td>2:00 pm - 6:00 pm</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+				<div class="container ourteam">
+					<h4 class="text-center pt-4 ">Our Doctors</h4>
+					<hr class="botm-line">
+				</div>
+				<div class="container">
+					<div class="form-row text-center">
+													
+						<div class="col-md-3 teammember">
+							<img src="{%static 'img/doctor2.jpg' %}" class="fluid-img border p-2" alt="...">
+							<h5 class="card-title pt-3">Jayesh Pandey</h5>
+							<p class="card-text">BE IT B 07</p>
+							<div class="clear"> </div>
+						</div>
+						<div class="col-md-3 teammember">
+							<img src="{%static 'img/doctor3.jpg' %}" class="fluid-img border p-2" alt="...">
+							<h5 class="card-title pt-3">Prem Patel</h5>
+							<p class="card-text">BE IT B 12</p>
+							<div class="clear"> </div>
+						</div>
+						<div class="col-md-3 teammember">
+							<img src="{%static 'img/doctor4.jpg' %}" class="fluid-img border p-2" alt="...">
+							<h5 class="card-title pt-3">Dheeraj Poojary</h5>
+							<p class="card-text">BE IT B 16</p>
+							<div class="clear"> </div>
+						</div>
+						<div class="col-md-3 teammember">
+							<img src="{%static 'img/doctor1.jpg' %}" class="fluid-img border p-2" alt="...">
+							<h5 class="card-title pt-3">Dheeraj Poojary</h5>
+							<p class="card-text">BE IT B 16</p>
+							<div class="clear"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+
+    </div>
+
+
+				
+
+	<h3 class="pb-4 pt-4 text-center text-white" id="about">ABOUT US</h3>
+
+	<div class="bg-white">	
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-6 aboutimgdiv">
+					<img src="{% static 'img/aboutus.jpg' %}" class="img-fluid aboutimg">
+				</div>
+
+				<div class="col-md-6">
+					<div class="row aboutcontainer">
+						<div class="col-sm-12 aboutdetails text-justify">
+							<div class="clear"></div>
+							<h4 class="pb-1">Who are we ?</h4>
+							<p>&nbsp &nbsp &nbsp  &nbspGoogle LLC lizes in Internet online advertising technologies, a search engine, cloud computing, software, and hardware. It is considered one of the Big Five technology companies in the U.S. information technology industry, alongside Amazon, Facebook, Apple, and Microsoft.[10][11][12]
+						 and will continue to be the  Sundar of Google, replacing Larry Page, who became the CEO of Alphabet. In 2021, the Alphabet Workers Union was founded, mainly composed of Google employees.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container features pt-4">
+				<div class="row featurediv">
+					<div class="container ourteam">
+					<h4 class="text-center pt-4 ">Our team</h4>
+					<hr class="botm-line">
+				</div>
+					<div class="container">
+						<div class="row text-center">
+
+							<div class="col-md-4 teammember">
+								<img src="" class="fluid-img" alt="...">
+								<h5 class="card-title pt-3">Jayesh Pandey</h5>
+								<p class="card-text">BE IT B 07</p>
+								<div class="clear"> </div>
+							</div>
+							<div class="col-md-4 teammember">
+								<img src="" class="fluid-img" alt="...">
+								<h5 class="card-title pt-3">Prem Patel</h5>
+								<p class="card-text">BE IT B 12</p>
+								<div class="clear"> </div>
+							</div>
+							<div class="col-md-4 teammember">
+								<img src="" class="fluid-img" alt="...">
+								<h5 class="card-title pt-3">Dheeraj Poojary</h5>
+								<p class="card-text">BE IT B 16</p>
+								<div class="clear"> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <h3 class="pb-4 pt-4 text-center text-white" id="contact">CONTACT US</h3>
+    
+	<div class="bg-white">	
+        <div class="container pt-4 pb-4">
+            <div class="row contactconatiner">
+                <div class="col-sm-5 contactdetails">
+				
+                    <h4 class="text-center ">How to find us </h4>
+					<hr>
+                    <h6 class="text-justify">If you have any questions, just fill in the contact form, and we will answer you shortly. If you are
+                    living nearby, come and visit our clinic. </h6>
+                    <br>
+                    <h6 class="bg-white text-center p-2"><span class="fa fa-phone" style="color:#007bff;"> &nbsp </span> PHONE</h6>
+                    <p class="text-center m-2.5"> +91 9820276110 &nbsp&nbsp|&nbsp +91 8209388720 </p>
+                    <h6 class="bg-white text-center p-2"> <span class="fa fa-envelope" style="color:#007bff;"> &nbsp </span> E-MAIL</h6>
+                    <p class="text-center m-2.5"> clinic@cms.com </p>
+                    <h6 class="bg-white text-center p-2"> <span class="fa fa-map-marker" style="color:#007bff;"> &nbsp </span> ADDRESS</h6>
+                    <p class="text-center text-justify m-3"> 101 - Shukla Building, Near Brand Factory, Mill Road, Goregaon (W), Mumbai - 400 098</p>
+                </div>
+                <form class="col-sm-7 contactform" method="POST">
+                {% csrf_token %}
+                    <h4 class="text-center">Have some questions ?</h4>
+					<hr>
+                    <div class="mb-3">
+                          <label class="form-label">Name :</label>
+                        <input type="text" class="form-control" id="contactName" placeholder="Name" name="pname" required="true">
+                    </div>
+                    <div class="mb-3">
+                          <label  class="form-label">E-mail :</label>
+                          <input type="email" class="form-control" id="contactEmail" placeholder="E-Mail" name="email" required="true">
+                    </div>
+                    <div class="mb-3">
+                          <label class="form-label">Description :</label>
+                          <textarea class="form-control" id="contactDesc" rows="3"  placeholder="Description" name="description" required="true"></textarea>
+                    </div>
+                    <div class="col-sm-10 contactsubmit mb-4">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+
+
+	
+
+
+
+
+	 <div class="clear"></div>
+
+
+		<!-- footer -->
+		<footer class="bg-white text-center text-lg-start">
+			  <div class="container p-4">
+				<div class="row">
+				  <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+					<h5 class="text-uppercase">Footer Content</h5>
+						<p>
+						  
+						</p>
+				  </div>
+				  <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+					<h5 class="text-uppercase">Links</h5>
+					  <ul class="list-unstyled text-capitalize mb-0">
+						 <li>
+							<a href="#!" class="text-dark text-decoration-none">home</a>
+						</li>
+						<li>
+							<a href="#!" class="text-dark text-decoration-none">services</a>
+						</li>
+						<li>
+							<a href="#!" class="text-dark text-decoration-none">contact</a>
+						</li>
+						<li>
+							<a href="#!" class="text-dark text-decoration-none">about</a>
+						</li>
+					</ul>
+				  </div>
+
+				  <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+					  <h5 class="text-uppercase mb-1">Social</h5>
+						<ul class="list-unstyled">
+						  <li>
+							<a href="#!" class="text-dark text-decoration-none">Linkedin</a>
+						  </li>
+						  <li>
+							<a href="#!" class="text-dark text-decoration-none">Facebook</a>
+						  </li>
+						</ul>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+				© 2021 Copyright:
+				<a class="text-dark" href="http://127.0.0.1:8000/">ClinicManagementSystem.com</a>
+			  </div>
+		</footer>
+</body>
+
+<script>
+
+</script>
+
+
+
+<script>
+	$(document).ready(function(){
+
+    $('#NameCheck').hide();
+	$('#pMobileNoCheck').hide();
+	$('#pUsernameCheck').hide();
+	$('#pPassCheck').hide();
+	$('#pConPassCheck').hide();
+	$('#pEmailCheck').hide();
+
+	var NameCheck_error = true;
+	var pMobileNoCheck_error = true;
+	var pUsernameCheck_error = true;
+	var pPassCheck_error = true;
+	var pConPassCheck_error = true;
+	var pEmailCheck_error = true;
+
+	$('#pFirstName').keyup(function(){
+		pFirstNameCheck();
+	});
+
+	function pFirstNameCheck()
+	{
+		var user_val = $('#pFirstName').val();
+		if(user_val.length == '')
+		{
+			$('#NameCheck').show();
+			$('#NameCheck').html("Please enter your First Name.");
+			$('#NameCheck').focus();
+			$('#NameCheck').css("color","red");
+			NameCheck_error = false
+			return false;
+		}
+		else
+		{
+			 $('#NameCheck').hide();
+		}
+	}
+
+	$('#pLastName').keyup(function(){
+		pLastNameCheck();
+	});
+
+	function pLastNameCheck()
+	{
+		var user_val = $('#pLastName').val();
+		if(user_val.length == '')
+		{
+			$('#NameCheck').show();
+			$('#NameCheck').html("Please enter your Last Name.");
+			$('#NameCheck').focus();
+			$('#NameCheck').css("color","red");
+			NameCheck_error = false
+			return false;
+		}
+		else
+		{
+			 $('#NameCheck').hide(); 
+		}
+	}
+
+	$('#pMiddleName').keyup(function(){
+		pMiddleNameCheck();
+	});
+
+	function pMiddleNameCheck()
+	{
+		var user_val = $('#pMiddleName').val();
+		if(user_val.length == '')
+		{
+			$('#NameCheck').show();
+			$('#NameCheck').html("Please enter your Middle Name.");
+			$('#NameCheck').focus();
+			$('#NameCheck').css("color","red");
+			NameCheck_error = false
+			return false;
+		}
+		else
+		{
+			 $('#NameCheck').hide();
+		}
+	}
+
+	$('#pMobileNo').keyup(function(){
+		pMobileNoCheck();
+	});
+
+	function pMobileNoCheck()
+	{
+		var std_no = /^[6-9][0-9]{8}$/
+		var user_val = $('#pMobileNo').val();
+		if(user_val.length == '')
+		{
+			$('#pMobileNoCheck').show();
+			$('#pMobileNoCheck').html("Please enter your Mobile No.");
+			$('#pMobileNoCheck').focus();
+			$('#pMobileNoCheck').css("color","red");
+			pMobileNoCheck_error = false
+			return false;
+		}
+		else if(user_val.length < 10)
+		{
+			$('#pMobileNoCheck').show();
+			$('#pMobileNoCheck').html("Invalid Mobile No.");
+			$('#pMobileNoCheck').focus();
+			$('#pMobileNoCheck').css("color","red");
+			pMobileNoCheck_error = false
+			return false;
+		}
+		else if(std_no.test(user_val))
+		{
+			$('#pMobileNoCheck').show();
+			$('#pMobileNoCheck').html("Invalid Mobile No.");
+			$('#pMobileNoCheck').focus();
+			$('#pMobileNoCheck').css("color","red");
+			pMobileNoCheck_error = false
+			return false;
+		}
+		else
+		{
+			 $('#pMobileNoCheck').hide();
+		}
+	}
+
+	$('#pEmail').keyup(function(){
+		pEmailCheck();
+	});
+
+	function pEmailCheck()
+	{
+		var user_val = $('#pEmail').val();
+		var std_val =  /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+		if(user_val.length == '')
+		{
+			$('#pEmailCheck').show();
+			$('#pEmailCheck').html("Please enter your E-mail.");
+			$('#pEmailCheck').focus();
+			$('#pEmailCheck').css("color","red");
+			pEmailCheck_error = false;
+			return false;
+		} 
+		else if(std_val.test(user_val))
+		{
+			$('#pEmailCheck').hide();
+		}
+		else
+		{
+			$('#pEmailCheck').show();
+			$('#pEmailCheck').html("Please enter valid E-mail.");
+			$('#pEmailCheck').focus();
+			$('#pEmailCheck').css("color","red");
+			pEmailCheck_error = false;
+			return false;
+		}
+	}
+	
+
+	$('#pPass').keyup(function(){
+		pPassCheck();
+	});
+
+	function pPassCheck()
+	{
+		var user_val = $('#pPass').val();
+		if(user_val.length == '')
+		{
+			$('#pPassCheck').show();
+			$('#pPassCheck').html("Please enter your Password.");
+			$('#pPassCheck').focus();
+			$('#pPassCheck').css("color","red");
+			pPassCheck_error = false
+			return false;
+		}
+		else if((user_val.length < 8) || (user_val.length > 15))
+		{
+			$('#pPassCheck').show();
+			$('#pPassCheck').html("Length of Password must be between 8 to 15");
+			$('#pPassCheck').focus();
+			$('#pPassCheck').css("color","red");
+			pPassCheck_error = false
+			return false;
+		}
+		else
+		{
+			 $('#pPassCheck').hide(); 
+		}
+	}
+
+
+	$('#pConPass').keyup(function(){
+		pConPassCheck();
+	});
+
+	function pConPassCheck()
+	{
+		var pass = $('#pPass').val()
+		var user_val = $('#pConPass').val();
+		if(user_val.length == '')
+		{
+			$('#pConPassCheck').show();
+			$('#pConPassCheck').html("Please re-enter your Password.");
+			$('#pConPassCheck').focus();
+			$('#pConPassCheck').css("color","red");
+			pConPassCheck_error = false
+			return false;
+		}
+		else if(user_val != pass)
+		{
+			$('#pConPassCheck').show();
+			$('#pConPassCheck').html("Please make sure your password match.");
+			$('#pConPassCheck').focus();
+			$('#pConPassCheck').css("color","red");
+			pConPassCheck_error = false
+			return false;
+		}
+		else
+		{
+			 $('#pConPassCheck').hide(); 
+		}
+	}
+
+
+	$('#signup').click(function(){
+
+		 NameCheck_error = true;
+		 pMobileNoCheck_error = true;
+		 pUsernameCheck_error = true;
+		 pPassCheck_error = true;
+		 pConPassCheck_error = true;
+
+		 pFirstNameCheck();
+		 pLastNameCheck();
+		 pMiddleNameCheck();
+		 pMobileNoCheck();
+		 pUsernameCheck();
+		 pPassCheck();
+		 pConPassCheck();
+
+		if((pFirstNameCheck_error == true) && (pLastNameCheck_error == true) &&
+		(pMiddleNameCheck_error == true) &&
+		(pMobileNoCheck_error == true) &&
+		(pUsernameCheck_error == true) &&
+		(pPassCheck_error == true) &&
+		(pConPassCheck_error = true))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	});
+});
+
+</script
+</html>
